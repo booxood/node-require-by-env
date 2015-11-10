@@ -17,7 +17,7 @@ describe('Merge', function() {
 });
 
 describe('Options', function() {
-  it('Set options `defaultFilename`', function() {
+  it('Set option `defaultFilename`', function() {
     var config = loader({
       base: './test/test_config',
       defaultFilename: 'index',
@@ -25,7 +25,7 @@ describe('Options', function() {
     config.should.eql(mergedJSON);
   });
 
-  it('Set options `merge`', function() {
+  it('Set option `merge`', function() {
     var config = loader({
       base: './test/test_config',
       merge: false,
@@ -42,7 +42,7 @@ describe('Options', function() {
   });
 
   process.env.PWD = './test/test_config';
-  it('No option', function() {
+  it('No options', function() {
     var config = loader();
     config.should.eql(defaultJSON);
   });
