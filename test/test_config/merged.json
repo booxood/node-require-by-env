@@ -1,0 +1,16 @@
+{
+  "name": "test.json",
+  "version": "1.0.0",
+  "value": {
+    "default": "default",
+    "common": "common test",
+    "obj": {
+      "obj": {
+        "value": "test"
+      },
+      "string": "test"
+    }
+  },
+  "test": "ok",
+  "arr": [1, 2, "test"]
+}

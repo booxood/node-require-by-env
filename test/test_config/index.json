@@ -1,0 +1,15 @@
+{
+  "name": "default.json",
+  "version": "1.0.0",
+  "value": {
+    "default": "default",
+    "common": "common default",
+    "obj": {
+      "string": "default",
+      "obj": {
+        "value": "default"
+      }
+    }
+  },
+  "arr": [1, 2]
+}

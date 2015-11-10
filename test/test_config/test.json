@@ -1,0 +1,14 @@
+{
+  "name": "test.json",
+  "value": {
+    "common": "common test",
+    "obj": {
+      "obj": {
+        "value": "test"
+      },
+      "string": "test"
+    }
+  },
+  "test": "ok",
+  "arr": [1, 2, "test"]
+}
