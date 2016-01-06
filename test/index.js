@@ -16,34 +16,60 @@ describe('Merge', function() {
   });
 });
 
-describe('Options', function() {
-  it('Set option `defaultFilename`', function() {
-    var config = loader({
-      base: './test/test_config',
-      defaultFilename: 'index',
-    });
+describe('String argv', function() {
+  it('Set base is string', function() {
+    var config = loader('./test/test_config');
     config.should.eql(mergedJSON);
   });
+});
 
-  it('Set option `merge`', function() {
+describe('Options', function() {
+  it('Set option `defaultVar`', function() {
     var config = loader({
       base: './test/test_config',
-      merge: false,
+      defaultVar: 'index',
     });
-    config.should.eql(testJSON);
+    config.should.eql(mergedJSON);
   });
 
   it('Set option `filename`', function() {
     var config = loader({
       base: './test/test_config',
-      filename: 'config.ENV',
+      filename: 'config.NODE_ENV',
     });
     config.should.eql(mergedJSON);
   });
 
   process.env.PWD = './test/test_config';
-  it('No options', function() {
+  it('No options will console error', function() {
     var config = loader();
+    should(config).not.be.ok();
+  });
+});
+
+describe('File path error', function() {
+  it('Default file path error', function() {
+    var config = loader({
+      base: './test/test_config',
+      defaultVar: 'error',
+    });
+    config.should.eql(testJSON);
+  });
+
+  it('Load file path error', function() {
+    var config = loader({
+      base: './test/test_config',
+      envVar: 'ERROR',
+    });
     config.should.eql(defaultJSON);
+  });
+
+  it('All file path error, return {}', function() {
+    var config = loader({
+      base: './test/test_config',
+      defaultVar: 'error',
+      envVar: 'ERROR',
+    });
+    config.should.eql({});
   });
 });

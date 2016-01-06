@@ -5,11 +5,16 @@ MOCHA_OPTS =
 install:
 	@npm install
 
-test: install lint
+lint:
+	node_modules/.bin/eslint .
+
+test-unit: install
 	@NODE_ENV=test ./node_modules/mocha/bin/mocha \
 		--timeout $(TIMEOUT) \
 		$(MOCHA_OPTS) \
 		$(TESTS)
+
+test: lint test-unit
 
 test-cov:
 	@NODE_ENV=test node \
@@ -29,9 +34,6 @@ test-travis:
 		--timeout $(TIMEOUT) \
 		$(MOCHA_OPTS) \
 		$(TESTS)
-
-lint:
-	node_modules/.bin/eslint .
 
 test-all: test test-cov
 

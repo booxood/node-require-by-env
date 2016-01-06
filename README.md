@@ -4,6 +4,7 @@
 [![Coverage Status](https://coveralls.io/repos/booxood/node-require-by-env/badge.svg)](https://coveralls.io/r/booxood/node-require-by-env)
 
 根据环境变量加载对应的文件。
+
 例如：测试时 `NODE_ENV=test`， 加载 `config.test.json`，
 开发时 `NODE_ENV=development`，加载 `config.development.json`。
 
@@ -18,8 +19,8 @@ npm install require-by-env
 ```javascript
 var loader = require('require-by-env');
 var config = loader({
-  base: './config',
-  filename: 'cfg.ENV',
+  base: '.',
+  filename: 'config.NODE_ENV',
 });
 
 console.log(process.env.NODE_ENV, ' env use config :', config);
@@ -29,21 +30,20 @@ console.log(process.env.NODE_ENV, ' env use config :', config);
 
 #### base
 
-加载的路径，默认为 `.` 。
+加载的路径，必填 。
 
 #### filename
 
-加载的文件名，用环境变量的值替换 `ENV`。
+加载的文件名，用环境变量的值替换 `NODE_ENV`。
 
-#### env
+例如：配置为 `filename: 'config.NODE_ENV'`，则 `NODE_ENV=development` 时，加载文件 `config.development.json`。
 
-环境变量名
 
-#### merge
+#### envVar
 
-是否与默认文件的值合并并覆盖，默认为 `true`。
+环境变量名，默认为 `NODE_ENV`。
 
-#### defaultFilename
+#### defaultVar
 
 设置默认值的文件名，默认为 `default`。
 
