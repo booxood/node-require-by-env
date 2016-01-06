@@ -2,32 +2,40 @@ var path = require('path');
 
 var _ = require('lodash');
 
-function Loader(options) {
-  var opt = options || {};
-  var base = opt.base || process.env.PWD || '.';
-  var filename = opt.filename || '';
-  var env = opt.env || 'NODE_ENV';
-  var merge = _.isUndefined(opt.merge) ? true : opt.merge;
-  var defaultFilename = opt.defaultFilename || 'default';
+function Loader(opt) {
+  var base = typeof opt === 'string' ? opt : opt && opt.base;
+  var filename = (opt && opt.filename) || 'NODE_ENV';
+  var envVar = (opt && opt.envVar) || 'NODE_ENV';
+  var defaultVar = (opt && opt.defaultVar) || 'default';
+  var loadVar = process.env[envVar];
 
-  var loadFilename = '';
   var envObj = {};
   var defaultObj = {};
 
+  var loadFilename = '';
+  var defaultFilename = '';
+
+  if (_.isUndefined(base)) {
+    console.error('[require-by-env] must field "base"!');
+    return;
+  }
+
   base = path.resolve(base);
+  loadFilename = path.join(base, filename.replace(/NODE_ENV/, loadVar));
+  defaultFilename = path.join(base, filename.replace(/NODE_ENV/, defaultVar));
 
-  loadFilename = process.env[env];
-  if (filename) {
-    loadFilename = filename.replace(/ENV/, loadFilename);
-    defaultFilename = filename.replace(/ENV/, defaultFilename);
+  try {
+    envObj = require(loadFilename);
+  } catch (err) {
+    console.warn('[require-by-env] require load file :' + loadFilename + ', error:', err);
+  }
+  try {
+    defaultObj = require(defaultFilename);
+  } catch (err) {
+    console.warn('[require-by-env] require default file :' + defaultFilename + ', error:', err);
   }
 
-  envObj = require(path.join(base, loadFilename));
-  if (!merge) {
-    return envObj;
-  }
-
-  defaultObj = require(path.join(base, defaultFilename));
+  /* eslint consistent-return: 1 */
   return _.merge(defaultObj, envObj);
 }
 
