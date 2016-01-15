@@ -1,6 +1,7 @@
 # require-by-env
 
 [![Build Status](https://travis-ci.org/booxood/node-require-by-env.png?branch=master)](https://travis-ci.org/booxood/node-require-by-env)
+[![Build status](https://ci.appveyor.com/api/projects/status/y3u0t745hrrx15le/branch/master?svg=true)](https://ci.appveyor.com/project/booxood/node-require-by-env/branch/master)
 [![Coverage Status](https://coveralls.io/repos/booxood/node-require-by-env/badge.svg)](https://coveralls.io/r/booxood/node-require-by-env)
 
 根据环境变量加载对应的文件。
