@@ -1,6 +1,6 @@
 {
   "name": "require-by-env",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Require by ENV specify path",
   "main": "index.js",
   "scripts": {
