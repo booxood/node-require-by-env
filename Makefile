@@ -8,13 +8,13 @@ install:
 lint:
 	node_modules/.bin/eslint .
 
-test-unit: install
+test-unit:
 	@NODE_ENV=test ./node_modules/mocha/bin/mocha \
 		--timeout $(TIMEOUT) \
 		$(MOCHA_OPTS) \
 		$(TESTS)
 
-test: lint test-unit
+test: install lint test-unit
 
 test-cov:
 	@NODE_ENV=test node \
@@ -35,6 +35,6 @@ test-travis:
 		$(MOCHA_OPTS) \
 		$(TESTS)
 
-test-all: test test-cov
+test-all: install test test-cov
 
 .PHONY: test test-cov test-travis lint test-all

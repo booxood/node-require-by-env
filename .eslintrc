@@ -1,15 +1,11 @@
 {
-  "extends": [
-    "eslint-config-airbnb/legacy"
-  ],
-  "globals": {
-    "should": false,
-    "describe": false,
-    "it": false,
-    "expect": false,
-    "beforeEach": false,
-    "afterEach": false
+  "env": {
+    "node": true,
+    "mocha": true
   },
-  'rules': {
+  "extends": "eslint:recommended",
+  "globals": {},
+  "rules": {
+    "no-console": [1]
   }
 }

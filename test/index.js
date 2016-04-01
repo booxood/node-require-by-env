@@ -27,7 +27,7 @@ describe('Options', function() {
   it('Set option `defaultVar`', function() {
     var config = loader({
       base: './test/test_config',
-      defaultVar: 'index',
+      defaultVar: 'index'
     });
     config.should.eql(mergedJSON);
   });
@@ -35,7 +35,7 @@ describe('Options', function() {
   it('Set option `filename`', function() {
     var config = loader({
       base: './test/test_config',
-      filename: 'config.NODE_ENV',
+      filename: 'config.NODE_ENV'
     });
     config.should.eql(mergedJSON);
   });
@@ -51,7 +51,7 @@ describe('File path error', function() {
   it('Default file path error', function() {
     var config = loader({
       base: './test/test_config',
-      defaultVar: 'error',
+      defaultVar: 'error'
     });
     config.should.eql(testJSON);
   });
@@ -59,7 +59,7 @@ describe('File path error', function() {
   it('Load file path error', function() {
     var config = loader({
       base: './test/test_config',
-      envVar: 'ERROR',
+      envVar: 'ERROR'
     });
     config.should.eql(defaultJSON);
   });
@@ -68,7 +68,7 @@ describe('File path error', function() {
     var config = loader({
       base: './test/test_config',
       defaultVar: 'error',
-      envVar: 'ERROR',
+      envVar: 'ERROR'
     });
     config.should.eql({});
   });
