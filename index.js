@@ -24,11 +24,16 @@ function Loader(opt) {
   loadFilename = path.join(base, filename.replace(/NODE_ENV/, loadVar));
   defaultFilename = path.join(base, filename.replace(/NODE_ENV/, defaultVar));
 
-  try {
-    envObj = require(loadFilename);
-  } catch (err) {
-    console.warn('[require-by-env] require load file :' + loadFilename + ', error:', err);
+  if (loadVar) {
+    try {
+      envObj = require(loadFilename);
+    } catch (err) {
+      console.warn('[require-by-env] require load file :' + loadFilename + ', error:', err);
+    }
+  } else {
+    console.warn('[require-by-env] no set NODE_ENV, only require default config');
   }
+
   try {
     defaultObj = require(defaultFilename);
   } catch (err) {
